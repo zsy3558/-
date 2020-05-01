@@ -24,7 +24,7 @@ public class windows extends JPanel {
         rPanel.setBackground(Color.GRAY);
         rPanel.setPreferredSize(new Dimension(150,600));
         rPanel.setLayout(new FlowLayout());
-        String[] buttonArray = {"开始游戏","悔棋","重新开始"};
+        String[] buttonArray = {"先手","后手","悔棋","重新开始"};
         for(int i = 0;i<buttonArray.length;i++){
             JButton button = new JButton(buttonArray[i]);
             button.setPreferredSize(new Dimension(100,50));

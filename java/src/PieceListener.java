@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 public class PieceListener extends MouseAdapter implements ActionListener {
-    private int x,y;//点击坐标
+    private int y;//点击坐标
     private Graphics g;//画笔
     private int count;//判断下一步是黑子还是白子
     private Graphics2D g2d;//画笔对象
@@ -41,7 +41,7 @@ public class PieceListener extends MouseAdapter implements ActionListener {
         game.repaint();
     }
     public void mouseClicked(MouseEvent e){
-        x = e.getX();
+        int x = e.getX();
         y = e.getY();
         pve(x,y);
     }
@@ -76,13 +76,21 @@ public class PieceListener extends MouseAdapter implements ActionListener {
     }
     public void actionPerformed(ActionEvent e){
         if(e.getSource() instanceof JButton){
-            if(e.getActionCommand().equals("开始游戏")){
+            if(e.getActionCommand().equals("先手")){
                 MouseListener[] mls = game.getMouseListeners();
                 if(mls.length>0){
                     game.removeMouseListener(this);
                 }
                 reset();
                 game.addMouseListener(this);
+            }else if(e.getActionCommand().equals("后手")){
+                MouseListener[] mls = game.getMouseListeners();
+                if(mls.length>0){
+                    game.removeMouseListener(this);
+                }
+                reset();
+                game.addMouseListener(this);
+                ai(g2d);
             }else if (e.getActionCommand().equals("悔棋")){
                 if(lists.size()>=2){
                     pieces p = lists.get(lists.size()-2);
